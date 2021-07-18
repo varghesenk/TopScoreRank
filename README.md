@@ -36,7 +36,7 @@ The server( Endpoint ) can be started by executing the below command from the pr
 
 Now the service will be running at http://localhost:3000 port. Use Postman or cURL tool to make following endpoints calls.
 
-##API Endpoints
+##A PI Endpoints
 
 Following API are exposed as RESTful endpoints.
 
@@ -63,7 +63,7 @@ player[] ( as an Array string as player names) .  e.g player[]='Hikaru',player[]
 page: Page number as integer for pagination ( Default us 20 items per page)
 
 Returns Http Status 200 if succeeded other wise 4xx
-
+The return JSON content shall also have the paging metadata. The same informaiton is also available as ResponseHeader asw well
 ### 3 Get a single Score : GET /api/v1/scores/:id
 Id of the score to retrieve is encoded as part of the URL
 
@@ -74,7 +74,13 @@ Id of the score to be deleted is encoded as part of the URL
 
 Returns Http Status 200
 
-### 5 Get history of a player :  GET /api/v1/scores/:history/:player
-Name of the player who's history is required is encoded in the URL. 
-This Api 
+### 5 Get history of a player :  GET /api/v1/scores/history/:player
+Name of the player who's history is required is encoded in the URL.
+The client can request a player history. The resulting payload shall contain:
+
+    high score (time and score) which the best ever score of the player.
+    low score (time and score) worst score of the player.
+    average score value for player
+    list of all the scores (time and score) of this player.
+
 Returns Http Status 200 if succeeded other wise 4xx
